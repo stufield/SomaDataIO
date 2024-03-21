@@ -37,15 +37,15 @@ lift_master <- dplyr::left_join(v11k, v7k, by = "SeqId") |>
   dplyr::left_join(v5k, by = "SeqId")
 life_master <- dplyr::relocate(lift_master, SeqId, sort(names(lift_master)))
 
-lref <- list()
-lref$plasma <- dplyr::select(lift_master, SeqId,
-                             starts_with("plasma"), -ends_with("ccc"))
-names(lref$plasma) <- gsub("^plasma_", "", names(lref$plasma))
-lref$plasma[is.na(lref$plasma)] <- 1  # 1.0 scale factor
+#lref <- list()
+#lref$plasma <- dplyr::select(lift_master, SeqId,
+#                             starts_with("plasma"), -ends_with("ccc"))
+#names(lref$plasma) <- gsub("^plasma_", "", names(lref$plasma))
+#lref$plasma[is.na(lref$plasma)] <- 1  # 1.0 scale factor
 
-lref$serum <- dplyr::select(lift_master, SeqId,
-                            starts_with("serum"), -ends_with("ccc"))
-names(lref$serum) <- gsub("^serum_", "", names(lref$serum))
-lref$serum[is.na(lref$serum)] <- 1  # 1.0 scale factor
+#lref$serum <- dplyr::select(lift_master, SeqId,
+#                            starts_with("serum"), -ends_with("ccc"))
+#names(lref$serum) <- gsub("^serum_", "", names(lref$serum))
+#lref$serum[is.na(lref$serum)] <- 1  # 1.0 scale factor
 
-save(lift_master, lref, file = "sysdata.rda", compress = "xz")
+save(lift_master, file = "sysdata.rda", compress = "xz")
